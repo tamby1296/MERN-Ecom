@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import Rating from "../../components/Rating";
 import { useGetProductDetailsQuery } from "../../slices/product.slice";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
 
 const Product = () => {
   const { id: productId } = useParams();
@@ -13,8 +15,14 @@ const Product = () => {
     error,
   } = useGetProductDetailsQuery(productId);
 
-  if (isLoading) return <>Loading...</>;
-  if (isError && error) return <div>{error?.data?.message}</div>;
+  console.log(error);
+  if (isLoading) return <Loader />;
+  if (isError && error)
+    return (
+      <Message variant="danger">
+        {error?.data?.message ?? "An error has occured"}
+      </Message>
+    );
   if (!product) return null;
   return (
     <>
