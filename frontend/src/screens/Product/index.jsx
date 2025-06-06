@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import Rating from "../../components/Rating";
-import { useGetProductByIdQuery } from "../../slices/product.slice";
+import { useGetProductDetailsQuery } from "../../slices/product.slice";
 
 const Product = () => {
   const { id: productId } = useParams();
@@ -11,7 +11,7 @@ const Product = () => {
     isLoading,
     isError,
     error,
-  } = useGetProductByIdQuery(productId);
+  } = useGetProductDetailsQuery(productId);
 
   if (isLoading) return <>Loading...</>;
   if (isError && error) return <div>{error?.data?.message}</div>;
