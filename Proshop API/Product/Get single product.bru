@@ -1,0 +1,15 @@
+meta {
+  name: Get single product
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseURL}}/products/{{productId}}
+  body: none
+  auth: inherit
+}
+
+vars:pre-request {
+  productId: 6842d1a67e373792df75987e
+}
