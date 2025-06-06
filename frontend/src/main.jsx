@@ -1,4 +1,5 @@
 import { StrictMode } from "react";
+import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
@@ -12,7 +13,8 @@ import HomeScreen from "./screens/Home";
 import ProductScreen from "./screens/Product";
 
 import "./assets/styles/bootstrap.custom.css";
-import "./assets//styles/index.css";
+import "./assets/styles/index.css";
+import store from "./store.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +27,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
